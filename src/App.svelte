@@ -17,7 +17,10 @@
         });
 
         const body = await response.json();
-        window.location = body.url;
+		window.location = body.url;
+		
+		//reset input
+		donationAmount = ''
 	}
 
 </script>
