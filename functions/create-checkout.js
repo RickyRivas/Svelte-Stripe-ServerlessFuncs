@@ -3,7 +3,7 @@ const serverless = require("serverless-http");
 const app = express();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// app.use(express.json());
+app.use(express.json());
 app.post("/.netlify/functions/create-checkout", async (req, res) => {
   const product = {
     price_data: {
