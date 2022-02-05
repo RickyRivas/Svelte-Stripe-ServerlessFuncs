@@ -1,7 +1,7 @@
 <script>
 	let donationAmount;
 	async function getMsg() {
-		const res = await fetch('/.netlify/functions/create-checkout.js');
+		const res = await fetch('http://localhost:52041/.netlify/functions/create-checkout');
 		const data = await res.json()
 		console.log(data)
 	}
