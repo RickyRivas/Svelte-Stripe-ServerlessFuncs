@@ -1,17 +1,31 @@
 <script>
 	let donationAmount;
-	async function getMsg() {
-		const res = await fetch('http://localhost:52041/.netlify/functions/create-checkout');
-		const data = await res.json()
-		console.log(data)
+
+	async function sendDonation() {
+		const product = {
+			price: donationAmount * 100,
+			title: 'Donation',
+			description: `A donation amount of ${donationAmount} made out to New Life Ministries.`
+		}
+		const response = await fetch('/.netlify/functions/create-checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(product)
+        });
+
+        const body = await response.json();
+        window.location = body.url;
 	}
 
 </script>
 
 <main>
 	<h1>Donate to New Life Ministries</h1>
-	<form action="" on:submit|preventDefault={getMsg}>
-		<input type="number" bind:value={donationAmount}>
+	<form action="" on:submit|preventDefault={sendDonation}>
+		<input type="number"  bind:value={donationAmount}>
 		{#if !donationAmount}
 		<button id='donateBtn'>Donate Now</button>
 		{:else}
