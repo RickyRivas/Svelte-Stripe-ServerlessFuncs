@@ -5,7 +5,7 @@
 		const product = {
 			price: donationAmount * 100,
 			title: 'Donation',
-			description: `A donation amount of ${donationAmount} made out to New Life Ministries.`
+			description: `A donation amount of $${donationAmount} made out to New Life Ministries.`
 		}
 		const response = await fetch('/.netlify/functions/create-checkout', {
             method: 'POST',
